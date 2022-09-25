@@ -14,11 +14,11 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-      working-directory: my-app-path
+      run: ./mvnw package && java -jar target/gs-spring-boot-docker-0.1.0.jar
+      working-directory: target
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
-        app-name: my-app-name
+        app-name: vinaydevops
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: my/target/*.jar
+        package: target/*.jar
